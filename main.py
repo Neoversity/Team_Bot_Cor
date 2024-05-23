@@ -199,12 +199,15 @@ def print_commands(commands):
 # Головна функція програми
 def main():
     db = NotesDatabase()
+    print("\nAvailable commands:")
+    print_commands(commands)
 
     while True:
-        print("\nAvailable commands:")
-        print_commands(commands)
+
 
         choice = get_command_input()
+
+
         # Обробка команд
         if choice == "hello":
             say_hello()
