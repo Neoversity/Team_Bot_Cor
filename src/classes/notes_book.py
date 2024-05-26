@@ -17,13 +17,6 @@ class NotesBook:
         self.next_id += 1
         self.save_notes()  # Збереження нотаток після додавання
 
-    # Метод для отримання запису за його ID
-    def get_note_by_id(self, note_id):
-        for note in self.notes:
-            if note.id == note_id:
-                return note
-        return None
-
     # Метод для отримання всіх нотаток
     def get_all_notes(self):
         return self.notes
@@ -43,32 +36,30 @@ class NotesBook:
 
     # Метод для видалення нотатки за ідентифікатором
     def delete_note(self, id):
-        self.notes = [note for note in self.notes if note.id != id]
+        new_notes = []
+        deleted = False
+        for note in self.notes:
+            if note.id == id:
+                deleted = True
+                continue
+            new_notes.append(note)
+        self.notes = new_notes
         self.save_notes()  # Збереження нотаток після видалення
-        return True
+        return deleted
 
     # Метод для оновлення нотатки
     def update_note(self, id, text, tags):
-        while True:
-            try:
-                id = int(id)  # Перевірка, чи є id цілим числом
-                break  # Якщо id є цілим числом, вихід з циклу
-            except ValueError:
-                print("Неправильний формат ID. Будь ласка, введіть ціле число.")
-                id = input("Введіть ID нотатки для оновлення: ")
-
         for note in self.notes:
             if note.id == id:
                 note.text = text
                 note.tags = tags
                 self.save_notes()  # Збереження нотаток після оновлення
                 return True
-        print("Нотатки з таким ID не знайдено.")
         return False
 
     # Метод для збереження нотаток у файл
     def save_notes(self):
-        with open("notes.json", "w") as file:
+        with open("../notes.json", "w") as file:
             json_notes = [
                 {"id": note.id, "text": note.text, "tags": note.tags}
                 for note in self.notes
@@ -78,7 +69,7 @@ class NotesBook:
     # Метод для завантаження нотаток з файлу
     def load_notes(self):
         try:
-            with open("notes.json", "r") as file:
+            with open("../notes.json", "r") as file:
                 json_notes = json.load(file)
                 self.notes = [
                     Note(note["id"], note["text"], note["tags"]) for note in json_notes

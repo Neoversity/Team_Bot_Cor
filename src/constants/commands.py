@@ -1,10 +1,13 @@
 # Словник команд та їх описи
-commands = {    
-    "all_contact": "Показати всі контакти",
-    "add_contact": "Додати контакт", 
+commands = {
+    "all_contacts": "Показати всі контакти",
+    "add_contact": "Додати контакт",
     "search_contact": "Пошук контакту за тегами",
-    "change_contact": "Змінити контакт",    
+    "change_contact": "Змінити контакт",
     "delete_contact": "Видалити контакт",
+    "add_address": "Додати адресу до контакту",
+    "change_address": "Змінити адресу",
+    "delete_address": "Видалити адресу",
 
     "add_phone": "Додати телефон до контакту",
     "delete_phone": "Видалити телефон з контакту",
@@ -21,9 +24,10 @@ commands = {
     "show_birthday": "Показати день народження",
     "show_all_birthdays": "Показати всі дні народження",
     "search_by_date_birthday": "Пошук за датою народження",
+    "show_next_birthday": "Показати найближчі дні народження",
 
     "add_note": "Додати нотатку",
-    "all_note": "Показати всі нотатки",
+    "all_notes": "Показати всі нотатки",
     "search_note": "Пошук нотаток за тегами",
     "sorting_note_by_tags": "Сортування нотаток за тегами",
     "delete_note": "Видалити нотатку",
